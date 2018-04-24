@@ -1,9 +1,11 @@
 # ElixirRlp
 
-https://github.com/ethereum/wiki/wiki/RLP
+Reference: https://github.com/ethereum/wiki/wiki/RLP
+Code Snippets: @girishramnani
 
 **TODO: Add description**
-To run the tests use mix test from iex
+Fix Long List encoding 
+Add unit test
 
 ## Installation
 
