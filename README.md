@@ -1,11 +1,13 @@
 # ElixirRlp
 
-Reference: https://github.com/ethereum/wiki/wiki/RLP
-Code Snippets: @girishramnani
+- Reference: https://github.com/ethereum/wiki/wiki/RLP
+- Code Snippets: @girishramnani
 
-**TODO: Add description**
-Fix Long List encoding 
-Add unit test
+**TODO:**
+- Fix Long List encoding
+- Add unit test
+- Add doc test
+
 
 ## Installation
 

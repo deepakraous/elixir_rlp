@@ -1,6 +1,11 @@
 defmodule ElixirRlp.Encode do
 
-   #From https://github.com/ethereum/wiki/wiki/RLP
+    @moduledoc """
+       Elixir implementation of RLP encoding with the help of some code reference from @girishramnani implementation,
+       Check out this medium article for reference
+       https://medium.com/coinmonks/ethereum-under-the-hood-part-ii-i-933411deebe1
+
+    """
 
    #As defined by RLP
     @list 0xc0
@@ -27,7 +32,18 @@ defmodule ElixirRlp.Encode do
         "Payload size maxed out, size should <=1024"
     end
 
-    #Encode for small and big list
+    @doc """
+       Encode for small and big list function
+
+       ## Examples
+
+      iex> mixer_list = ["abc", 1, 987, "d", "o", "g" ]
+      ["abc", 1, 987, "d", "o", "g"]
+      iex> mixer_list |> ElixirRlp.Encode.encode
+      <<203, 131, 97, 98, 99, 1, 130, 3, 219, 100, 111, 103>>
+
+    """
+
     def encode( payload ) when is_list(payload) do
 
         bytes = payload |> Enum.map(fn p->encode(p) end)

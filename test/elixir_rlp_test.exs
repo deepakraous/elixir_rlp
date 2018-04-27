@@ -1,7 +1,7 @@
 defmodule ElixirRlpTest do
   use ExUnit.Case
-  doctest ElixirRlp
 
+  doctest ElixirRlp.Encode
 
     test "encode empty items" do
         assert ElixirRlp.Encode.encode("") == <<0x80>>
@@ -48,5 +48,6 @@ defmodule ElixirRlpTest do
                                                  4, 0, 128>>
 
     end
+
 
 end
