@@ -5,9 +5,6 @@
 
 **TODO:**
 - Fix Long List encoding
-- Add unit test
-- Add doc test
-
 
 ## Installation
 

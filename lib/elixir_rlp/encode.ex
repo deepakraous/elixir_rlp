@@ -41,9 +41,7 @@ defmodule ElixirRlp.Encode do
       ["abc", 1, 987, "d", "o", "g"]
       iex> mixer_list |> ElixirRlp.Encode.encode
       <<203, 131, 97, 98, 99, 1, 130, 3, 219, 100, 111, 103>>
-
     """
-
     def encode( payload ) when is_list(payload) do
 
         bytes = payload |> Enum.map(fn p->encode(p) end)
@@ -55,8 +53,20 @@ defmodule ElixirRlp.Encode do
 
     end
 
-    #Encode for payload within the string and various conditons
-    #Code snipppet from @girishramnani
+    @doc """
+       #Code snipppet from @girishramnani
+
+       Encode for payload within the string and various conditons
+
+       ## Examples
+
+       iex> s_string = "A small string here"
+       "A small string here"
+       iex> s_string |> ElixirRlp.Encode.encode
+       <<147, 65, 32, 115, 109, 97, 108, 108, 32, 115, 116, 114, 105, 110, 103, 32,
+        104, 101, 114, 101>>
+
+    """
     def encode(<<byte, _::binary>> = payload) when is_binary(payload) do
 
           cond do
@@ -99,7 +109,7 @@ defmodule ElixirRlp.Encode do
     defp list_encode(encoded_string, _payload) when byte_size(encoded_string) <= 55 do
 
         <<@list + byte_size(encoded_string ) >> <> encoded_string
-
+        
     end
 
     #Long list

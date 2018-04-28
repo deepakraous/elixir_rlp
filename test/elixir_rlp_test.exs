@@ -22,11 +22,11 @@ defmodule ElixirRlpTest do
          assert ElixirRlp.Encode.encode(978) == <<130, 3, 210>>
     end
 
-    test "encode small arrays " do
+    test "encode small list " do
          assert ElixirRlp.Encode.encode( ["cat", "dog"] ) == <<200, 131, 99, 97, 116, 131, 100, 111, 103>>
     end
 
-    test "encode large arrays " do
+    test "encode large list " do
 
          large_array =  ["this is a very long list", "you never guess how long it is", "indeed, how did you know it was this long", "good job, that I can tell you in honestlyyyyy"]
          encoded_array = <<248, 144, 152, 116, 104, 105, 115, 32, 105, 115, 32, 97, 32, 118, 101, 114, 121, 32, 108, 111, 110, 103, 32, 108, 105, 115, 116, 158, 121, 111, 117, 32,
