@@ -11,7 +11,7 @@ defmodule ElixirRlp.Encode do
     @list 0xc0
     @long_list 0xf7
     @string 0x80
-    @long_string 0xb7
+    @long_string 0xb8
     @int_zero 0x80
 
     #Empty defs
@@ -57,7 +57,6 @@ defmodule ElixirRlp.Encode do
        #Code snipppet from @girishramnani
 
        Encode for payload within the string and various conditons
-
        ## Examples
 
        iex> s_string = "A small string here"
@@ -69,13 +68,13 @@ defmodule ElixirRlp.Encode do
     """
     def encode(<<byte, _::binary>> = payload) when is_binary(payload) do
 
-          cond do
+        cond do
 
-            (byte_size(payload) == 1) && Enum.member?(0x00..0x7f,byte) -> <<byte>>
-             byte_size(payload) <= 55 ->  << @string + byte_size(payload) >> <> payload
-             byte_size(payload) > 55 ->
+            ( byte_size(payload ) == 1  ) && Enum.member?(0x00..0x7f,byte) -> <<byte>>
+            ( byte_size(payload ) <= 55 ) ->  << @string + byte_size(payload) >> <> payload
+            ( byte_size(payload ) > 55  ) ->
                                     first_byte = int_to_binary(byte_size(payload))
-                                    <<@long_string + byte_size(first_byte) >> <> first_byte <> payload
+                                    <<@long_string + byte_size(first_byte) >> <> payload
          end
 
     end
@@ -84,7 +83,6 @@ defmodule ElixirRlp.Encode do
     def encode(payload) when is_number(payload) do
 
         encoded_number = int_to_binary(payload)
-
         cond do
          (byte_size(encoded_number) == 1)  -> encoded_number
          (byte_size(encoded_number) > 1 )  -> <<@int_zero + byte_size(encoded_number)>> <> encoded_number
@@ -107,22 +105,18 @@ defmodule ElixirRlp.Encode do
 
     #Short list
     defp list_encode(encoded_string, _payload) when byte_size(encoded_string) <= 55 do
-
         <<@list + byte_size(encoded_string ) >> <> encoded_string
-        
     end
 
     #Long list
     defp list_encode(encoded_string, payload) when byte_size(encoded_string) >55 do
 
-        #Todo verify (smell bugginess here)
         bytes_size = payload
                 |>length
                 |>int_to_binary
                 |>byte_size
 
         <<@long_list + bytes_size >> <> encoded_string
-
 
     end
 

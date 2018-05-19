@@ -4,7 +4,9 @@
 - Code Snippets: @girishramnani
 
 **TODO:**
-- Fix Long List encoding
+- Decode code
+- More unit test
+
 
 ## Installation
 
