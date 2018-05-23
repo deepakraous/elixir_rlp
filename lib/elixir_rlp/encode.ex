@@ -57,6 +57,7 @@ defmodule ElixirRlp.Encode do
        #Code snipppet from @girishramnani
 
        Encode for payload within the string and various conditons
+
        ## Examples
 
        iex> s_string = "A small string here"

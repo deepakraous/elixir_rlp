@@ -3,9 +3,13 @@
 - Reference: https://github.com/ethereum/wiki/wiki/RLP
 - Code Snippets: @girishramnani
 
-**TODO:**
-- Decode code
-- More unit test
+**Updates:**
+- Decode code skeleton added
+- Updated Readme.md
+
+**ToDos:**
+- Wrap up decode
+- Add unit tests for decode
 
 
 ## Installation
