@@ -74,7 +74,9 @@ defmodule ElixirRlp.Encode do
             ( byte_size(payload ) == 1  ) && Enum.member?(0x00..0x7f,byte) -> <<byte>>
             ( byte_size(payload ) <= 55 ) ->  << @string + byte_size(payload) >> <> payload
             ( byte_size(payload ) > 55  ) ->
-                                    first_byte = int_to_binary(byte_size(payload))
+                                       first_byte = payload
+                                                    |> int_to_binary
+                                                    |> byte_size
                                     <<@long_string + byte_size(first_byte) >> <> payload
          end
 
@@ -92,33 +94,33 @@ defmodule ElixirRlp.Encode do
 
     end
 
-    #Encode for Number
-    #Code snipppet from @girishramnani
-    defp int_to_binary(number) do
+      #Encode for Number
+      #Code snipppet from @girishramnani
+      defp int_to_binary(number) do
 
-        number
-            |> Integer.digits(256)
-            |> Enum.reduce(<<>>,
-              fn (number,binary) -> binary <> <<number>> end
-             )
+          number
+              |> Integer.digits(256)
+              |> Enum.reduce(<<>>,
+                fn (number,binary) -> binary <> <<number>> end
+               )
 
-    end
+      end
 
-    #Short list
-    defp list_encode(encoded_string, _payload) when byte_size(encoded_string) <= 55 do
-        <<@list + byte_size(encoded_string ) >> <> encoded_string
-    end
+      #Short list
+      defp list_encode(encoded_string, _payload) when byte_size(encoded_string) <= 55 do
+          <<@list + byte_size(encoded_string ) >> <> encoded_string
+      end
 
-    #Long list
-    defp list_encode(encoded_string, payload) when byte_size(encoded_string) >55 do
+      #Long list
+      defp list_encode(encoded_string, payload) when byte_size(encoded_string) >55 do
 
-        bytes_size = payload
-                |>length
-                |>int_to_binary
-                |>byte_size
+          bytes_size = payload
+                  |>length
+                  |>int_to_binary
+                  |>byte_size
 
-        <<@long_list + bytes_size >> <> encoded_string
+          <<@long_list + bytes_size >> <> encoded_string
 
-    end
+      end
 
 end
