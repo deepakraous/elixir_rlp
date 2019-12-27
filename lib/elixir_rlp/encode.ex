@@ -122,5 +122,10 @@ defmodule ElixirRlp.Encode do
           <<@long_list + bytes_size >> <> encoded_string
 
       end
+      
+       # Binary to Base16
+      def binary_to_Base16(binary) do
+        binary |> Base.encode16
+      end
 
 end
