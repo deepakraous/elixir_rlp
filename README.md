@@ -26,10 +26,11 @@ def deps do
 end
 ```
 # Run it from iex
-iex> mixer_list = ["abc", 1, 987, "d", "o", "g" ]
+```iex> mixer_list = ["abc", 1, 987, "d", "o", "g" ]
 ["abc", 1, 987, "d", "o", "g"]
 iex> mixer_list |> ElixirRlp.Encode.encode
 <<203, 131, 97, 98, 99, 1, 130, 3, 219, 100, 111, 103>>
+```
 
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
