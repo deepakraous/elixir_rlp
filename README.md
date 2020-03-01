@@ -1,3 +1,4 @@
+[![Run on Repl.it](https://repl.it/badge/github/deepakraous/elixir_rlp)](https://repl.it/github/deepakraous/elixir_rlp)
 # ElixirRlp
 
 - Reference: https://github.com/ethereum/wiki/wiki/RLP
